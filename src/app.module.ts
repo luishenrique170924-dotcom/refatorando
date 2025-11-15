@@ -18,7 +18,21 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: false,  // importante! false em produção
       logging: true,
     }),
-    CustomersModule],
+
+  TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306, // padrão
+      username: 'root',
+      password: '',
+      database: 'curso',
+      autoLoadEntities: true,
+      synchronize: false,  // importante! false em produção
+      logging: true,
+    }),
+
+
+    ProductsModule, CustomersModule],
   controllers: [AppController],
   providers: [AppService],
 })
