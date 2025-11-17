@@ -6,7 +6,7 @@ import { Repository } from "typeorm";
 
 @Injectable()
 export class CustomersService {
-   constructor(@InjectRepository(Customer) private customersRepository: Repository<Customer>) {
+   constructor(@InjectRepository(Customer, 'dbCustomers') private customersRepository: Repository<Customer>) {
    }
 
    async get() {

@@ -9,7 +9,7 @@ export class ProductsService {
     private products: Array<any>;
     
     constructor(
-        @InjectRepository(Product)
+        @InjectRepository(Product, 'dbProducts')
         private productsRepository: Repository<Product>
     ) {
         this.products = [
@@ -38,27 +38,26 @@ export class ProductsService {
         };
     }
 
-    update(id: number, product: UpsertProductDTO) {
-        // [ 1, 2, 3, 4 ]
-        const index = this.products.findIndex((p) => p.id == id);
-        if(index == -1) {
-            throw new NotFoundException('Produto não encontrado!')
-        }
-        this.products[index] = {
-            'id': this.products[index].id,
-            // spread
-            ...product
-        }
-        
-        return {
-            "message": "Produto Atualizado!"
-        };
+async update(id: number, data: UpsertProductDTO) {
+    const result = await this.productsRepository.update(id, data);
+
+    if (result.affected === 0) {
+        throw new NotFoundException('Produto não encontrado');
     }
 
-    delete(id: number) {
-        this.products = this.products.filter((p) => p.id != id);
-        return {
-            "message": "Produto removido!"
-        }
+    return { message: 'Produto atualizado!' };
+}
+
+async delete(id: number) {
+    const result = await this.productsRepository.delete(id);
+
+    if (result.affected === 0) {
+        throw new NotFoundException('Produto não encontrado');
     }
+
+    return { message: 'Produto deletado!' };
+}
+
+
+
 }

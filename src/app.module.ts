@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
+      name: 'dbCustomers',
       type: 'mysql',
       host: 'localhost',
       port: 3306, // padrão
@@ -20,6 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
 
   TypeOrmModule.forRoot({
+      name: 'dbProducts',
       type: 'mysql',
       host: 'localhost',
       port: 3306, // padrão
