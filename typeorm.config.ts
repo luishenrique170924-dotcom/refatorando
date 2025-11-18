@@ -7,7 +7,7 @@ export default new DataSource({
   port: 3306,
   username: 'root',
   password: '',
-  database: 'curso',
+  database: 'luis_loja_senai',
   entities: [Product],
-  migrations: ['dist/migrations/*.js'],
+  migrations: ['dist/migrations-products/*.js'],
 });

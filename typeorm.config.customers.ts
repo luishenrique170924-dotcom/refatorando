@@ -1,4 +1,4 @@
-import path from "path";
+
 import { Customer } from "./src/customers/customers.entity";
 import { DataSource } from "typeorm";
 
@@ -9,7 +9,7 @@ export const CustomerDataSource = new DataSource({
     port: 3306,
     username: 'root',
     password: '',
-    database: 'cliente_customers',
+    database: 'luis_loja_senai',
     entities: [Customer],
-    migrations: [path.join('migrations-customers', '*.{ts,js}')],
+    migrations: ["dist/migrations-customers/*.js"],
 });

@@ -9,7 +9,7 @@ export class ProductsService {
     private products: Array<any>;
     
     constructor(
-        @InjectRepository(Product, 'dbProducts')
+        @InjectRepository(Product)
         private productsRepository: Repository<Product>
     ) {
         this.products = [
